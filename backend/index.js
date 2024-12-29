@@ -12,13 +12,21 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
-const corsOptions = {
-  origin: "https://task-manager-todo-app.vercel.app",
-  optionsSuccessStatus: 200,
-  credentials: true,
-};
+const allowedOrigins = ["https://task-manager-todo-app.vercel.app"];
 
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
