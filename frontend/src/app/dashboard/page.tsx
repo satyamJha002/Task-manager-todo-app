@@ -40,6 +40,7 @@ export default function DashboardPage() {
         const data = await response.json();
         setStats(data);
       } catch (error) {
+        console.log(error);
         setError("Failed to load dashboard data. Please try again later.");
       } finally {
         setIsLoading(false);

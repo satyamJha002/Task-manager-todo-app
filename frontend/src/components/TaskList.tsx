@@ -29,7 +29,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useToast } from "@/hooks/use-toast";
 import {
   Dialog,
   DialogContent,
@@ -50,8 +49,6 @@ export default function TaskList() {
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [currentTask, setCurrentTask] = useState<Partial<Task>>({});
-
-  const { toast } = useToast();
 
   useEffect(() => {
     fetchTasks(currentPage);
@@ -86,11 +83,7 @@ export default function TaskList() {
       setTasks(data.tasks);
       setTotalPage(data.totalPages);
     } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "Failed to fetch tasks. Please try again later.",
-      });
+      console.log(error);
     } finally {
       setIsLoading(false);
     }
@@ -108,9 +101,7 @@ export default function TaskList() {
 
   const handleSaveTask = () => {
     setIsDialogOpen(false);
-    toast({
-      title: "Task saved successfully",
-    });
+    alert("Task saved successfully");
   };
 
   const handleSort = (
