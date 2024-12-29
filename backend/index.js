@@ -12,12 +12,13 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: "https://task-manager-todo-app.vercel.app",
+  optionsSuccessStatus: 200,
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
