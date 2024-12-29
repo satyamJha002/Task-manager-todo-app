@@ -27,12 +27,15 @@ export default function DashboardPage() {
     const fetchStats = async () => {
       const token = localStorage.getItem("loginToken");
       try {
-        const response = await fetch("http://localhost:5000/api/tasks/stats", {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetch(
+          "https://task-manager-todo-app.onrender.com/api/tasks/stats",
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         if (!response.ok) {
           throw new Error("Failed to fetch data");

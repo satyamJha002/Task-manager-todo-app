@@ -57,7 +57,9 @@ export default function TaskList() {
   const fetchTasks = async (page: number) => {
     try {
       setIsLoading(true);
-      const url = new URL("http://localhost:5000/api/tasks");
+      const url = new URL(
+        "https://task-manager-todo-app.onrender.com/api/tasks"
+      );
       url.searchParams.append("page", page.toString());
       url.searchParams.append("limit", totalPage.toString());
       if (statusFilter) {
